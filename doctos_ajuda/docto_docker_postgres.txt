@@ -1,0 +1,34 @@
+Para instalar o postgres no docker sozinho.
+docker run --name my-postgres - p 5433:5432 -e POSTGRES_PASSWORD=postgres -d postgres
+--name -> nome do container
+-p - porta. por padrão roda na 5432, na máquina host, expõe na 5433
+-d para não ficar com a tela presa. postgres é o nome da imagem.
+
+se não tiver, instala.
+baixa e instala se não tiver.
+
+localhost:5433, acessa o host
+
+PARA FAZER O CONTAINER DO PG ADMIN Não consegue. precisa colocar na mesma rede.
+
+docker prune -a (remove tudo que tem na máquina)
+
+
+docker ps -a (lista todos, inclusive o que não está em execução)
+
+
+tenho que criar a rede
+
+docker network create --driver bridge my-network
+
+docker run --name my-postgres --network=my-newwork -p 5433:5432 -e POSTGRES_PASSWORD=postgres -d postgres
+
+
+PGADMIN
+
+
+vídeo https://www.youtube.com/watch?v=CdoBvd_bPdk
+usuario postgres postgres
+
+
+https://www.youtube.com/watch?v=aWZDFKJz7X8

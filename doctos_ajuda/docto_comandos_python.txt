@@ -1,0 +1,8 @@
+python manage.python
+
+- runsever - rodar
+- migrate - fazer a migração
+- makemigrations - cria os modelos para o migrate
+
+- createsuperuser - cria o super administrador
+

@@ -1,0 +1,13 @@
+
+CONEXÃO COM BANCO DE DADOS SQLITE
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
+
+Rodando django com postgres no docker
+https://www.youtube.com/watch?v=aWZDFKJz7X8
+

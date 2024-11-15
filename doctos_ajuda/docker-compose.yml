@@ -1,0 +1,51 @@
+services:
+  database:
+    container_name: my-postgres
+    image: postgres:16.4-debian
+    restart: always
+    user: postgres
+    volumes:
+      - pgdata:/var/lib/postgresql/database
+    environment:
+      - LC_ALL=C.UTF-8
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=carros
+    ports:
+      - 5433:5432
+    networks:
+      - newwork
+
+  pgadmin:
+    container_name: my-pgadmin
+    image: dpage/pgadmin4
+    restart: unless-stopped
+    volumes:
+       - pgadmin:/var/lib/pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ennio.gomide@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: xxx
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+    ports:
+      - 15432:80
+    networks:
+      - newwork
+
+  web:
+    build: .
+    command: python djangoMaster/Carros/manage.py runserver 0.0.0.0:8000"
+    ports:
+      - "8000:8000"
+    depends_on:
+      - database
+    volumes:
+      - .:/code
+    env_file:
+      - .env
+    networks:
+      - newwork
+  
+  networks:
+  newwork:
+    name: my-newwork
+    external: true

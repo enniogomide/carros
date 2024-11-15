@@ -1,0 +1,8 @@
+python manage.py shell # para acessar o shell do django
+
+exemplo.
+from django.conf import settings
+
+settings.INSTALLED_APPS
+
+brand = Brand.objects.all()

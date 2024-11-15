@@ -1,0 +1,15 @@
+https://git-scm.com/download/win (para baixar)exi
+
+Comomandos.
+
+echo "# djangomaster_carros" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin git@github.com:enniogomide/djangomaster_carros.git
+git push -u origin main
+
+
+git add . # inclui todos arquivos na versão
+

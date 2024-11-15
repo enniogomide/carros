@@ -1,0 +1,27 @@
+para ver a versão
+psql --version
+
+Comando para entrar no shell do postgres
+
+psql -U postgres
+
+para listar os bancos no postgres
+\l 
+
+Criar um banco de dados
+
+CREATE DATABASE carros;
+
+banco de dados:
+usuário postgres
+
+senha: postgres
+
+
+pgadmin local
+port: 5434
+senha: 
+
+
+
+

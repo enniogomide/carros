@@ -1,0 +1,5 @@
+pip freeze > requirements.txt
+
+para atulizar o pip
+pip install pip --upgarde
+
