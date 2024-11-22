@@ -1,0 +1,78 @@
+depois de conectar no aws (LOGAR),
+
+conectar. abre um terminal pelo aws.
+
+PARA INSTALAR O POSTGRES
+
+sudo apt install postgresql postgresql-contrib
+
+para acessar o banco de dados.
+
+sudo -u postgres psql 
+
+digitar o comando 
+\password postgres (enter) ira aparecer para digitar a senha
+
+para criar o banco de dados
+
+CREATE DATABASE carros;
+
+
+****************************************
+*** para poder rodar com versão diferente
+******************************************
+
+para atualizar o ambiente
+
+sudo apt install build-essential python3
+
+sudo apt install python3-dev
+
+sudo apt install python3-venv
+
+sudo apt install python3-pip
+
+
+*****************************************
+*** Criar o ambiente virtual env
+****************************************
+mover para o diretório carros (da aplicação)
+
+python3 -m venv carrosv0
+
+para ativar
+
+source carrosv0/bin/activate
+
+*******************************************
+*** rodar para atualizar os requerimentos do projeto
+*******
+
+pip install -r requirements.txt
+
+********
+** quando der erro como foi no caso do psycopg2
+
+tem que desinstalar na máquina local.
+no c do micro.
+pip uninstall psycopg2 (remover e instalar o binary)
+pip install psycopg2-binary (instalar a versão já compilada)
+
+atualizar o requirements
+pip freeze > requirements.txt
+
+depois fazer o processo do GIT
+git add .
+git commit -am "texto da versão"
+git push origin main
+
+no servidor no aws
+
+git pull (atualiza)
+
+
+**************************************
+*** PARA EXECUTAR A aplicação
+
+python3 manage.py runsever 0:8000
+

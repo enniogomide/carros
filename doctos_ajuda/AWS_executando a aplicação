@@ -1,0 +1,11 @@
+*************
+*** para executar a aplicação.
+
+Instância no AR.
+ativação do virtual env
+
+python manage.py runserver 0:8000
+
+
+ERRO DisallowedHost at cars 
+
