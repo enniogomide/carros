@@ -1,78 +1,146 @@
-depois de conectar no aws (LOGAR),
 
-conectar. abre um terminal pelo aws.
+aula 96
+*****************************************************
+*** CRIAR UM servidor
+*****************************************************
 
-PARA INSTALAR O POSTGRES
+logado na conta.
+https://us-east-1.console.aws.amazon.com
 
-sudo apt install postgresql postgresql-contrib
+Selecionar Instância.
+escolhar Norte da Virgínia. (mais recurso)
 
-para acessar o banco de dados.
+tem que estár na região, para selecionar o servidor.
 
-sudo -u postgres psql 
+escolher opções gratuitas
 
-digitar o comando 
-\password postgres (enter) ira aparecer para digitar a senha
+pode criar outra chave, ou usar uma que tenha sido criada. (Par de chaves)
 
-para criar o banco de dados
 
+Marcar no grupo de seguração, todas as opções (ssh, https, http)
+
+
+aula 97
+*******************************************************************
+***** PARA ACESSAR VIA ssh
+*******************************************************************
+
+
+Usar o ssh que está no servidor use a chave e execute os comandos, antes. Use o git bash
+na primeira vez, rodar o update e upgrate
+
+
+aula 98
+****************************************************
+*** Precisa atualizar a aplicação a partir do git, usando ssh.
+****************************************************************
+
+Gerar chave como determina o git
+ssh-keygen -t ed25519 -C "ennio.gomide@gmail.com"
+dar enter, não precisa  informar nada, inclusive senha.
+
+incluir a chave no agente ssh
+eval "$(ssh-agent -s)"
+
+ssh-add ~/.ssh/id_ed25519
+
+cat ~/.ssh/id_ed25519.pub (para leitura da chave publica)
+
+Liberar o acesso no github. cadastrar no settings, no ssh key.
+
+
+para autenticar no git
+ssh -T git@github.com
+
+
+
+
+***************************************
+**** Para clonar
+***************************************
+copiar no code da aplicação o comando ssh.
+git@github.com:enniogomide/carros.git
+
+comando dentro da pasta home/ubuntu
+
+
+Aula 99 
+***************************************************
+***** insalar o banco de dados
+*****************************************************
+sudo apt install postgresql postgresql-contrib (instalar)
+
+para acessar o comando shell do postgres
+
+sudo -u postgres psql
+
+Para alterar a senha
+\password postgres
+
+Para criar o banco de dados
 CREATE DATABASE carros;
 
 
-****************************************
-*** para poder rodar com versão diferente
-******************************************
-
-para atualizar o ambiente
-
+***************************************************
+***** CONFIGURANDO O AMBIENTE  NO SERVIDOR
+*****************************************************
+Instalar as funcionalidades adicionais do python. o que vem é mais enxuto
 sudo apt install build-essential python3
 
+ferramentas adicionais
 sudo apt install python3-dev
 
+instalar para permitir a criação do ambinete virtual
 sudo apt install python3-venv
 
+Instalar o pip
 sudo apt install python3-pip
 
 
-*****************************************
-*** Criar o ambiente virtual env
-****************************************
-mover para o diretório carros (da aplicação)
+Criar o ambiente virtual
+python3 -m venv venv (carrosv0)
 
-python3 -m venv carrosv0
-
-para ativar
-
+Para ativar a venv
 source carrosv0/bin/activate
 
-*******************************************
-*** rodar para atualizar os requerimentos do projeto
-*******
+Instalar as dependências (requirments)
 
 pip install -r requirements.txt
 
-********
-** quando der erro como foi no caso do psycopg2
+*********************************************************
+**** Atualizando a aplicação
+*********************************************************
 
-tem que desinstalar na máquina local.
-no c do micro.
-pip uninstall psycopg2 (remover e instalar o binary)
-pip install psycopg2-binary (instalar a versão já compilada)
+Para instalar algum pacoate.
+pip unstall psycopg2
+instalando novos pacotes e gerando novo requirmente
 
-atualizar o requirements
 pip freeze > requirements.txt
 
-depois fazer o processo do GIT
-git add .
-git commit -am "texto da versão"
+Na maquina local
+git commit -am "mensagem" 
 git push origin main
 
-no servidor no aws
+no servidor, 
+git pull
 
-git pull (atualiza)
+Para executar o servidor
+python3 manage.py runserver 0:porta (8080)
+
+********************************************
+***** PARA ACESSAR PRECISA ALTERAR O FIREWALL
+***********************************************
+colocar a porta, deixar aberto geral. (depois pensar em testar com ip limitado)
+
+***************************************************
+*** FAZER O MIGRATE
+*************************************************
+python3 manage.py migrate 
 
 
-**************************************
-*** PARA EXECUTAR A aplicação
+********************************************************
+*** CRIAR O SUPERUSER  
+****************************************
 
-python3 manage.py runsever 0:8000
+python3 manage.py createsuperuser
 
