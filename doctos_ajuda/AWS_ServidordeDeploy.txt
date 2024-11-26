@@ -1,0 +1,60 @@
+Não pode ser instalado com anteriormente. nos comandos. txt
+
+Precisa ser com usuário root
+
+para remover a aplicação instalada previamente, sudo rm Rf carros/
+
+
+para mudar para o root
+
+sudo su 
+
+**************************************
+ir para o raiz. /
+cd /
+
+depois entrar na pasta var ]
+cd var
+
+criar o diretório wwww
+
+mkdir www 
+
+entrar no diretório   
+
+precisa fazer o processo de autorização para o root para acessar o github e clonar.
+
+************************************
+para mudar para o root
+sudo su  
+
+depois que clonar
+entrar no diretório carros
+
+criar o ambiente virtual
+
+python3 -m venv carrosv0  
+
+instalar as dependências  
+pip install -r requirements.txt
+
+Instalar o wsgi
+pip install uwsgi 
+
+para rodar a aplicação
+uwsgi --http :8080 --module app.wsgi --chmod-socket=666
+
+
+para instalar o servidor web NGINX
+
+sudo apt install nginx  
+
+depois já fica ativo.
+
+Mexer na instalação.  
+
+cd /etc/nginx/sites-available
+
+usar o editor de texto nano
+
+sudo nano carros.conf
