@@ -58,3 +58,21 @@ cd /etc/nginx/sites-available
 usar o editor de texto nano
 
 sudo nano carros.conf
+
+
+tem que criar o arquivo uwsgi_param (mesmo do carros)
+atualizar o static_root em settings.py
+
+depois, fazer o commit.
+fazer o git pull no carros (no servidor)
+
+sudo ln -s /etc/nginx/sites-available/carros.conf /etc/nginx/sites-enabled/
+
+depois da configuração, depois de rodar o comando anterior.
+
+executar
+python3 manage.py collectstatic (copia do static para root_static)
+
+reiniciar o servidor
+
+sudo /etc/init.d/nginx restart
