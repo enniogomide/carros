@@ -76,3 +76,24 @@ python3 manage.py collectstatic (copia do static para root_static)
 reiniciar o servidor
 
 sudo /etc/init.d/nginx restart
+
+criar o arquivo de socket
+
+uwsgi --socket /var/www/carros/carros.sock --module app.wsgi --chmod-socket=666
+
+
+****************************************************************************************
+**** para iniciar como um serviço no servidor
+
+criar um arquivo na app, raiz, carros_uwsgi.ini 
+
+parâmetros
+
+chdir           = /var/www/carros (diretório de onde está a aplicaçaõ)
+module          = app.wsgi
+home            = /var/www/carros/carrosv0 (ambiente virtual que será usado)
+master          = true
+processes       = 10 (quantidade de processos wsgi)
+socket          = /var/www/carros/carros.sock
+chmod-socket    = 666
+vacuum          = true
